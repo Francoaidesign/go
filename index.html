@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FRANCO Design Studio - Gemini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--panel:#0d0d0d;--gold:#d6ad45;--gold2:#f6d37d;--muted:#aaa;--line:#302819;--danger:#ff7777;--ok:#74d680}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;font-family:'Cairo',sans-serif;background:radial-gradient(circle at 50% 15%,rgba(214,173,69,.12),transparent 32%),linear-gradient(145deg,#050505,#101010 55%,#050505);color:#fff}
+button,input,select,textarea{font-family:'Cairo',sans-serif}
+button{cursor:pointer}
+.page{min-height:100vh;display:none;align-items:center;justify-content:center;padding:24px}.page.active{display:flex}
+.hero{width:min(1100px,92vw);min-height:78vh;border:1px solid rgba(214,173,69,.22);border-radius:36px;background:rgba(255,255,255,.035);box-shadow:0 40px 120px rgba(0,0,0,.55),inset 0 0 80px rgba(214,173,69,.05);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px}
+.english{font-size:clamp(42px,8vw,110px);line-height:1.02;font-weight:900;letter-spacing:-2px;text-transform:uppercase;color:var(--gold2);text-shadow:0 0 22px rgba(214,173,69,.35),0 12px 35px rgba(0,0,0,.45)}
+.english span{display:block;font-weight:300;letter-spacing:8px;color:#fff;font-size:.34em;margin-top:14px;text-transform:uppercase}
+.line{width:140px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:32px auto 0}
+.mainBtn,.submitBtn{margin-top:34px;display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:14px 28px;border-radius:999px;border:0;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;font-size:22px;font-weight:900;box-shadow:0 18px 45px rgba(214,173,69,.24)}
+.authWrap{width:min(1040px,94vw);display:grid;grid-template-columns:1fr 430px;border:1px solid rgba(214,173,69,.22);border-radius:34px;overflow:hidden;background:rgba(255,255,255,.035);box-shadow:0 40px 120px rgba(0,0,0,.55)}
+.authInfo{padding:46px;background:radial-gradient(circle at 35% 30%,rgba(214,173,69,.15),transparent 34%),linear-gradient(145deg,#0c0c0c,#050505);display:flex;flex-direction:column;justify-content:center}
+.authInfo h2{font-size:clamp(34px,5vw,62px);line-height:1.15;color:var(--gold2);margin-bottom:18px}
+.authInfo p{color:#bdbdbd;line-height:1.9;font-size:17px}
+.authCard{padding:36px;background:var(--panel);border-right:1px solid rgba(214,173,69,.16)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px;padding:6px;background:#080808;border:1px solid #282114;border-radius:18px}
+.tab{border:0;border-radius:13px;padding:12px;background:transparent;color:#aaa;font-weight:800}.tab.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111}
+.formTitle{font-size:26px;font-weight:900;margin-bottom:6px}.formSub{color:#999;font-size:14px;margin-bottom:22px}
+.googleBtn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;border-radius:15px;border:1px solid #333;background:#fff;color:#111;font-weight:900}
+.divider{display:flex;align-items:center;gap:12px;color:#777;font-size:13px;margin:22px 0}.divider:before,.divider:after{content:"";flex:1;height:1px;background:#2a2a2a}
+.field{margin-bottom:14px}.field label{display:block;color:#d5d5d5;font-size:13px;margin-bottom:7px}.field input{width:100%;padding:13px 14px;border-radius:14px;border:1px solid #2d2d2d;background:#080808;color:#fff;outline:none}
+.backBtn{margin-top:12px;width:100%;border:1px solid #333;border-radius:15px;padding:12px;background:#111;color:#fff}.hidden{display:none}
+.nav{margin-top:10px;display:grid;gap:10px}.nav div{padding:13px 14px;border:1px solid #242016;border-radius:16px;background:#101010;color:#d8d0c2}.nav div.active{border-color:var(--gold);background:rgba(216,173,69,.1);color:#fff}
+.studioWrap{width:min(1360px,98vw);display:grid;grid-template-columns:310px 1fr 430px;gap:18px;align-items:start}
+.panel{background:var(--panel);border:1px solid rgba(214,173,69,.22);border-radius:28px;padding:22px;box-shadow:0 35px 100px rgba(0,0,0,.48)}
+.panel h2{color:var(--gold2);font-size:30px;margin-bottom:8px}.panel p{color:#aaa;line-height:1.7;font-size:14px}
+.categoryGrid{display:grid;gap:10px;margin-top:16px;max-height:72vh;overflow:auto;padding-left:4px}
+.catBtn{border:1px solid var(--line);background:#080808;color:#ddd;border-radius:16px;padding:13px;text-align:right;font-weight:800}.catBtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-color:var(--gold)}
+.promptArea{width:100%;min-height:110px;border-radius:18px;border:1px solid var(--line);background:#070707;color:#fff;padding:15px;resize:vertical;outline:none;line-height:1.8;margin-top:10px}
+.customSizeBox{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.customSizeBox input,.customSizeBox select{width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);background:#080808;color:#fff;outline:none}
+.optionsGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+.optionField label{display:block;color:#ddd;font-size:13px;margin-bottom:7px}.optionField select,.optionField input{width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);background:#080808;color:#fff;outline:none}
+.outputMode{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.modeBtn{border:1px solid var(--line);background:#080808;color:#ddd;border-radius:16px;padding:14px;font-weight:900}.modeBtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-color:var(--gold)}
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}.actions button{margin-top:0;min-width:auto;font-size:15px;border-radius:15px}.actions button:disabled{opacity:.55;cursor:not-allowed}
+.resultBox{white-space:pre-wrap;line-height:1.75;color:#eee;background:#070707;border:1px solid var(--line);border-radius:20px;padding:16px;min-height:360px;font-size:13px}
+.ownerTag{display:inline-block;color:#111;background:linear-gradient(135deg,var(--gold2),var(--gold));padding:8px 12px;border-radius:999px;font-weight:900;font-size:12px;margin-bottom:8px}
+.metaGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.meta{background:#080808;border:1px solid var(--line);border-radius:16px;padding:13px}.meta small{display:block;color:#888;margin-bottom:4px}.meta b{color:#fff}
+.generatedPreview{display:none;margin-top:16px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#070707}.generatedPreview.active{display:block}
+.generatedCanvas{width:100%;min-height:310px;background:linear-gradient(145deg,#101010,#050505);display:flex;align-items:center;justify-content:center;padding:22px}.designMock{width:100%;min-height:260px;border:2px solid var(--gold);border-radius:22px;background:radial-gradient(circle at 50% 25%,rgba(214,173,69,.22),transparent 30%),linear-gradient(145deg,#121212,#050505);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}.designMock h3{color:var(--gold2);font-size:30px;margin-bottom:12px}.designMock p{color:#ddd;font-size:15px;line-height:1.7}
+#generatedImage{display:none;width:100%;border-radius:18px;margin-top:14px;border:1px solid var(--line)}
+.fileMock{display:none;margin-top:16px;background:#070707;border:1px solid var(--line);border-radius:22px;padding:18px}.fileMock.active{display:block}.fileMock h3{color:var(--gold2);margin-bottom:8px}.fileMock ul{padding-right:22px;color:#ddd;line-height:1.9}
+.alert{border:1px solid var(--line);border-radius:15px;background:#080808;padding:12px;margin-top:12px;color:#ddd;line-height:1.7}.alert.error{border-color:#7d2b2b;color:#ffb2b2}.alert.ok{border-color:#2e6b3d;color:#bff5ca}
+.pricingWrap{width:min(1280px,97vw);display:flex;flex-direction:column;gap:18px}.pricingHeader{background:var(--panel);border:1px solid rgba(214,173,69,.22);border-radius:28px;padding:26px;box-shadow:0 35px 100px rgba(0,0,0,.48);display:flex;justify-content:space-between;align-items:flex-end;gap:20px}.pricingHeader h2{color:var(--gold2);font-size:40px;margin-bottom:8px}.pricingHeader p{color:#aaa;line-height:1.7}.pricingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.priceCard{position:relative;background:var(--panel);border:1px solid rgba(214,173,69,.22);border-radius:28px;padding:22px;box-shadow:0 25px 80px rgba(0,0,0,.38)}.priceCard.featured{border-color:var(--gold);background:linear-gradient(180deg,rgba(214,173,69,.11),#0d0d0d 45%)}.planName{font-size:26px;font-weight:900;color:var(--gold2)}.planPoints{color:#ddd;margin-top:6px;font-weight:700}.priceLine{display:flex;align-items:flex-end;gap:10px;margin:18px 0}.currentPrice{font-size:38px;font-weight:900;color:#fff}.currency{color:var(--gold2);font-size:16px;margin-bottom:8px}.oldPrice{color:#777;text-decoration:line-through;margin-bottom:8px}.saveBadge{position:absolute;top:18px;left:18px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900}.features{margin-top:16px;padding-right:20px;color:#cfcfcf;line-height:1.9;font-size:14px}.chooseBtn{width:100%;border:0;border-radius:15px;padding:13px;margin-top:18px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;font-weight:900}
+.downloadPanel{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.72);z-index:99;padding:20px}.downloadPanel.active{display:flex}.downloadBox{width:min(560px,94vw);background:var(--panel);border:1px solid rgba(214,173,69,.28);border-radius:28px;padding:26px;box-shadow:0 40px 120px rgba(0,0,0,.65)}.downloadBox h2{color:var(--gold2);margin-bottom:8px;font-size:28px}.downloadBox p{color:#aaa;line-height:1.7;margin-bottom:18px}.downloadChoices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.downloadChoice{border:1px solid var(--line);background:#080808;color:#fff;border-radius:20px;padding:20px;text-align:right}.downloadChoice b{display:block;color:var(--gold2);font-size:18px;margin-bottom:6px}.downloadChoice span{color:#aaa;font-size:13px;line-height:1.6}
+@media(max-width:1150px){.studioWrap{grid-template-columns:1fr}.categoryGrid{max-height:none}.authWrap{grid-template-columns:1fr}.optionsGrid,.actions,.customSizeBox,.pricingGrid{grid-template-columns:1fr}.authCard{border-right:0;border-top:1px solid rgba(214,173,69,.16)}.pricingHeader{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<main id="homePage" class="page active">
+  <section class="hero"><div><h1 class="english">Franco Design<span>studio</span></h1><div class="line"></div><button class="mainBtn" onclick="showAuth()">أنشئ الآن</button></div></section>
+</main>
+
+<main id="authPage" class="page">
+  <section class="authWrap">
+    <div class="authInfo"><h2>ابدأ التصميم الآن</h2><p>نسخة جاهزة لـ GitHub و Vercel ومتصلة بـ Gemini API من Google AI Studio.</p></div>
+    <div class="authCard">
+      <div class="tabs"><button id="loginTab" class="tab active" onclick="switchMode('login')">تسجيل الدخول</button><button id="signupTab" class="tab" onclick="switchMode('signup')">إنشاء حساب</button></div>
+      <div class="formTitle" id="formTitle">تسجيل الدخول</div><div class="formSub" id="formSub">ادخل بياناتك أو استخدم حساب Google.</div>
+      <button class="googleBtn" onclick="googleLogin()">G الدخول عبر Google</button><div class="divider">أو</div>
+      <div class="field hidden" id="nameField"><label>الاسم</label><input type="text" placeholder="اكتب اسمك"></div>
+      <div class="field"><label>البريد الإلكتروني</label><input id="emailInput" type="email" placeholder="example@email.com" autocomplete="email"></div>
+      <div class="field"><label>كلمة المرور</label><input id="passwordInput" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+      <button class="submitBtn" style="width:100%;border-radius:15px;margin-top:6px" id="submitBtn" onclick="submitAuth()">دخول</button>
+      <button class="backBtn" onclick="showHome()">رجوع</button>
+      <div class="alert">Demo Owner: mohamedalifranco@gmail.com / Franco</div>
+    </div>
+  </section>
+</main>
+
+<main id="ownerPage" class="page">
+  <section class="authWrap">
+    <div class="authInfo"><h2>لوحة تحكم المالك</h2><p>كل الصلاحيات مفعّلة لإدارة الأقسام والتوليد والملفات والأسعار.</p></div>
+    <div class="authCard">
+      <div class="formTitle">FRANCO Admin</div><div class="formSub">افتح المصمم الشامل أو صفحة الأسعار.</div>
+      <div class="nav"><div class="active">أقسام متخصصة</div><div class="active">توليد صورة أو ملف</div><div class="active">قياسات يدوية لكل قسم</div><div class="active">Gemini API آمن</div></div>
+      <button class="submitBtn" style="width:100%;border-radius:15px" onclick="showStudio()">فتح المصمم الشامل</button>
+      <button class="backBtn" onclick="showPricingFromOwner()">صفحة الأسعار</button>
+      <button class="backBtn" onclick="logoutOwner()">تسجيل الخروج</button>
+    </div>
+  </section>
+</main>
+
+<main id="studioPage" class="page">
+  <section class="studioWrap">
+    <aside class="panel">
+      <span class="ownerTag">FRANCO Studio</span>
+      <h2>الأقسام</h2>
+      <p>كل قسم له اختيارات خاصة بمجاله فقط.</p>
+      <div id="categoryList" class="categoryGrid"></div>
+      <button class="backBtn" onclick="showPricingFromStudio()">صفحة الأسعار</button>
+      <button class="backBtn" onclick="backToOwner()">رجوع للمالك</button>
+    </aside>
+
+    <section class="panel">
+      <h2 id="designTitle">تصميم بوث</h2>
+      <p id="designDesc">مولد متخصص حسب القسم.</p>
+
+      <label style="display:block;color:#ddd;margin-top:14px">اكتب طلبك</label>
+      <textarea id="designIdea" class="promptArea"></textarea>
+
+      <label style="display:block;color:#ddd;margin-top:14px">بيانات إضافية / نصوص مطلوبة</label>
+      <textarea id="extraDetails" class="promptArea" style="min-height:105px"></textarea>
+
+      <div class="outputMode">
+        <button id="imageModeBtn" class="modeBtn active" onclick="setOutputMode('image')">توليد صورة</button>
+        <button id="fileModeBtn" class="modeBtn" onclick="setOutputMode('file')">توليد ملف</button>
+      </div>
+
+      <div class="optionField" style="margin-top:16px">
+        <label>اختيار الموديل</label>
+        <select id="modelSelect"><option>Nano Banana</option><option>Imagen 4</option></select>
+      </div>
+
+      <div class="optionField" style="margin-top:16px">
+        <label>المقاس اليدوي</label>
+        <div class="customSizeBox active">
+          <input id="manualW" type="number" placeholder="العرض" min="1">
+          <input id="manualH" type="number" placeholder="الارتفاع" min="1">
+          <select id="manualUnit"><option>سم</option><option>متر</option><option>بكسل</option><option>إنش</option></select>
+        </div>
+      </div>
+
+      <div id="specialOptions" class="optionsGrid"></div>
+
+      <div class="actions">
+        <button id="generateBtn" class="submitBtn" onclick="generateFinal()">توليد النتيجة</button>
+        <button class="backBtn" onclick="copyDescription()">نسخ الوصف</button>
+        <button class="backBtn" onclick="openDownloadPanel()">Download</button>
+      </div>
+      <div id="statusBox" class="alert">جاهز للتوليد.</div>
+    </section>
+
+    <aside class="panel">
+      <h2>الناتج النهائي</h2>
+      <div class="metaGrid">
+        <div class="meta"><small>القسم</small><b id="metaCat">Booth</b></div>
+        <div class="meta"><small>المقاس</small><b id="metaSize">6x3 متر</b></div>
+        <div class="meta"><small>الموديل</small><b id="metaModel">Nano Banana</b></div>
+        <div class="meta"><small>الناتج</small><b id="metaOutput">صورة</b></div>
+      </div>
+      <div id="generatedPreview" class="generatedPreview active">
+        <div class="generatedCanvas"><div class="designMock"><h3 id="mockTitle">صورة التصميم</h3><p id="mockText">اضغط توليد النتيجة لإنشاء صورة.</p><img id="generatedImage" alt="Generated design"></div></div>
+      </div>
+      <div id="fileMock" class="fileMock"><h3>ملف جاهز حسب طلبك</h3><ul id="fileList"></ul></div>
+      <div id="promptOutput" class="resultBox" style="margin-top:16px;display:none"></div>
+    </aside>
+  </section>
+</main>
+
+<main id="pricingPage" class="page">
+  <section class="pricingWrap">
+    <div class="pricingHeader"><div><span class="ownerTag">FRANCO Pricing</span><h2>خطط الأسعار</h2><p>العملة: الريال العُماني. النقاط تُستخدم في توليد الصور أو الملفات.</p></div><button class="backBtn" style="width:auto;min-width:160px" onclick="backFromPricing()">رجوع</button></div>
+    <div class="pricingGrid" id="pricingGrid"></div>
+  </section>
+</main>
+
+<div id="downloadPanel" class="downloadPanel">
+  <div class="downloadBox">
+    <h2>تحميل الملفات</h2>
+    <p>اختر نوع التحميل المناسب للقسم الحالي.</p>
+    <div class="downloadChoices">
+      <button class="downloadChoice" onclick="downloadSummaryImage()"><b>تحميل صورة</b><span>الصورة الناتجة/المعاينة كـ PNG.</span></button>
+      <button class="downloadChoice" onclick="downloadSpecPDF()"><b>تحميل PDF</b><span>ملف مواصفات متخصص حسب القسم.</span></button>
+    </div>
+    <button class="backBtn" onclick="closeDownloadPanel()">إغلاق</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+const OWNER_EMAIL="mohamedalifranco@gmail.com", OWNER_PASSWORD="Franco";
+let currentMode="login", currentCategoryKey="booth", outputMode="image", pricingBackTarget="owner";
+const $ = (id)=>document.getElementById(id);
+const categories={
+booth:{name:"تصميم بوث",desc:"بوثات المعارض: جدران، سقف، إضاءة، شاشات، كاونتر، حركة زوار.",defaultSize:["600","300","سم"],idea:"أريد تصميم بوث معرض احترافي فاخر.",extra:"اسم البراند:\\nالنشاط:\\nالشعار المطلوب:\\nأماكن الشاشات:",options:[["نوع البوث",["مفتوح من جهة واحدة","Corner مفتوح من جهتين","Island مفتوح من كل الجهات","Double Deck"]],["نوع الجدران",["جدار خلفي مضيء","Lightbox wall","ألواح خشبية","فوركس + بنر"]],["السقف",["إطار LED معلق","Hanging ring","سقف مفتوح","خطوط إضاءة مخفية"]],["الإضاءة",["Warm hidden LED","Spotlights","White clean lighting"]],["الشاشات",["شاشة خلفية","LED Wall","شاشة تفاعلية طولية","بدون شاشات"]],["الأرضية",["Raised floor + carpet","PVC","باركيه","حواف LED"]],["الخامات",["خشب + أكريلك + LED","MDF + فوركس","زجاج + معدن","قماش + خشب"]]]},
+businessCard:{name:"تصميم بيزنس كارد",desc:"كروت الأعمال: وجه/وجهين، تشطيب، QR، بيانات تواصل، طباعة.",defaultSize:["9","5","سم"],idea:"أريد تصميم بيزنس كارد احترافي.",extra:"الاسم:\\nالمسمى الوظيفي:\\nالهاتف:\\nالإيميل:",options:[["وجه الكارت",["وجه واحد","وجهين"]],["اتجاه الكارت",["أفقي","رأسي"]],["نوع الهوية",["Luxury","Minimal","Corporate"]],["التشطيب",["Matte Lamination","Glossy Lamination","Spot UV","Gold Foil"]],["الورق",["350gsm","400gsm","Textured paper"]]]},
+banner:{name:"تصميم بنر",desc:"بنرات: خامة، تركيب، وضوح من مسافة، عنوان، Call to Action.",defaultSize:["300","100","سم"],idea:"أريد تصميم بنر إعلاني واضح وجذاب.",extra:"العنوان الرئيسي:\\nالعرض:\\nرقم التواصل:",options:[["نوع البنر",["بنر خارجي","بنر داخلي","رول أب","واجهة محل"]],["الخامة",["Flex","Vinyl","Mesh banner","Fabric banner"]],["طريقة التركيب",["حلقات معدنية","جيب ماسورة","لاصق","إطار معدني"]],["CTA",["اتصل الآن","اطلب الآن","زر واتساب","زيارة الفرع"]]]},
+sticker:{name:"تصميم ستيكر",desc:"ملصقات: قص، شكل، خامة، بيانات منتج، باركود.",defaultSize:["7","7","سم"],idea:"أريد تصميم ستيكر احترافي للمنتج.",extra:"اسم المنتج:\\nالوصف:\\nالباركود/QR:",options:[["شكل الاستيكر",["دائري","مربع","مستطيل","Die Cut"]],["الخامة",["Vinyl","Transparent sticker","Paper sticker","Waterproof"]],["نوع القص",["قص عادي","Die Cut","Kiss Cut"]]]},
+brochure:{name:"تصميم بروشور",desc:"بروشورات: طي، صفحات، توزيع محتوى، خدمات، صور.",defaultSize:["21","29.7","سم"],idea:"أريد تصميم بروشور تعريفي احترافي.",extra:"عنوان البروشور:\\nنبذة عن الشركة:\\nالخدمات:",options:[["نوع الطي",["Tri Fold","Bi Fold","Z Fold","بدون طي"]],["عدد الأوجه",["وجهين","4 أوجه","6 أوجه","8 صفحات"]],["نوع المحتوى",["خدمات","منتجات","Company profile"]]]},
+fabric:{name:"تصميم قماش",desc:"تصميم قماش: باترن، تكرار، ألوان، طباعة.",defaultSize:["100","100","سم"],idea:"أريد تصميم قماش احترافي للطباعة.",extra:"نوع الاستخدام:\\nالألوان:\\nالنمط:",options:[["نوع التصميم",["Pattern متكرر","تصميم تيشيرت","Backdrop fabric","Uniform fabric"]],["طريقة التكرار",["Seamless repeat","Half drop","Mirror repeat"]],["طريقة الطباعة",["Sublimation","DTF","Screen print"]]]},
+flag:{name:"تصميم علم",desc:"أعلام: مكتبية، خارجية، Beach Flag، وضوح الشعار.",defaultSize:["150","100","سم"],idea:"أريد تصميم علم احترافي يحمل هوية الشركة.",extra:"اسم الشركة:\\nالشعار:\\nالألوان:",options:[["نوع العلم",["علم خارجي","علم مكتبي","Beach Flag","Event Flag"]],["الشكل",["مستطيل","Teardrop","Feather"]],["الخامة",["Polyester","Satin","Mesh fabric"]]]},
+notebook:{name:"تصميم نوت بوك",desc:"نوت بوك: غلاف، صفحات داخلية، هوية، ورق، تشطيب.",defaultSize:["14","21","سم"],idea:"أريد تصميم نوت بوك فخم يحمل هوية الشركة.",extra:"اسم الشركة:\\nالنص على الغلاف:",options:[["نوع التصميم",["غلاف فقط","غلاف + صفحات داخلية","Corporate notebook"]],["نوع الغلاف",["Hard cover","Soft cover","Kraft cover"]],["التجليد",["Spiral","Perfect binding","Hard binding"]]]},
+giftBox:{name:"تصميم بوكس هدايا",desc:"Packaging وعلب هدايا: ديلاين، خامة، فتح، تشطيب.",defaultSize:["30","20","سم"],idea:"أريد تصميم بوكس هدايا فاخر.",extra:"اسم البراند:\\nنوع المنتج داخل البوكس:",options:[["نوع البوكس",["Magnetic box","Sliding drawer box","Rigid box"]],["الخامة",["كرتون مقوى","كرافت","ورق فاخر"]],["التشطيب",["Gold Foil","Spot UV","Emboss"]]]},
+catalog:{name:"تصميم كتالوج",desc:"كتالوجات: صفحات، منتجات، فهارس، جداول، غلاف.",defaultSize:["21","29.7","سم"],idea:"أريد تصميم كتالوج احترافي.",extra:"اسم الكتالوج:\\nعدد الصفحات المتوقع:\\nأقسام المنتجات:",options:[["نوع الكتالوج",["Product catalog","Service catalog","Company profile"]],["عدد الصفحات",["8 صفحات","12 صفحة","24 صفحة","حسب المحتوى"]],["الإخراج",["Print PDF","Digital PDF","Both"]]]},
+presentation:{name:"تصميم برزنتيشن",desc:"عروض تقديمية: شرائح، قصة، Pitch Deck، محتوى.",defaultSize:["1920","1080","بكسل"],idea:"أريد تصميم برزنتيشن احترافي منظم.",extra:"عنوان العرض:\\nعدد الشرائح:\\nالنقاط الأساسية:",options:[["نوع العرض",["Company Presentation","Pitch Deck","Sales Presentation"]],["عدد الشرائح",["5 شرائح","10 شرائح","15 شريحة","حسب المحتوى"]],["الإخراج",["PPTX","PDF","Google Slides style"]]]}
+};
+const plans=[["Free","50 نقطة للتجربة","0","",["50 نقطة مجانية للتجربة","غير قابلة للتجديد","تجربة الأقسام الأساسية"]],["Start","300 نقطة شهريًا","5","10",["300 نقطة تتجدد شهريًا","مناسبة للأفراد","استخدام كل الأقسام"]],["Pro","600 نقطة شهريًا","8","15",["أفضل اختيار للمصممين","توليد أكبر للصور والملفات"]],["Ultra","1200 نقطة شهريًا","15","25",["مناسبة لشركات الدعاية الصغيرة","تصاميم متعددة"]],["Max","2400 نقطة شهريًا","28","35",["مناسبة للفرق","استخدام مكثف"]],["Business","5000 نقطة شهريًا","50","80",["مناسبة للشركات","أعلى قدرة توليد شهرية"]]];
+function activate(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id).classList.add("active")}
+function showAuth(){activate("authPage")} function showHome(){activate("homePage")}
+function switchMode(mode){currentMode=mode;const isLogin=mode==="login";$("loginTab").classList.toggle("active",isLogin);$("signupTab").classList.toggle("active",!isLogin);$("nameField").classList.toggle("hidden",isLogin);$("formTitle").innerText=isLogin?"تسجيل الدخول":"إنشاء حساب";$("formSub").innerText=isLogin?"ادخل بياناتك أو استخدم حساب Google.":"أنشئ حساب جديد للبدء.";$("submitBtn").innerText=isLogin?"دخول":"إنشاء حساب"}
+function submitAuth(){const email=$("emailInput").value.trim().toLowerCase(), pass=$("passwordInput").value;if(currentMode==="login"&&email===OWNER_EMAIL&&pass===OWNER_PASSWORD){activate("ownerPage");return} alert(currentMode==="login"?"بيانات الدخول غير صحيحة أو الحساب ليس مالك.":"تم تجهيز إنشاء الحساب. الربط الحقيقي يحتاج Firebase Auth.")}
+function googleLogin(){alert("عند الربط الحقيقي: إذا كان حساب Google هو mohamedalifranco@gmail.com سيتم منحه صلاحيات المالك.")}
+function logoutOwner(){activate("homePage")}
+function showStudio(){activate("studioPage");renderCategories();selectCategory(currentCategoryKey)}
+function backToOwner(){activate("ownerPage")}
+function showPricingFromOwner(){pricingBackTarget="owner";renderPricing();activate("pricingPage")}
+function showPricingFromStudio(){pricingBackTarget="studio";renderPricing();activate("pricingPage")}
+function backFromPricing(){activate(pricingBackTarget==="studio"?"studioPage":"ownerPage")}
+function renderPricing(){ $("pricingGrid").innerHTML=plans.map((p,i)=>`<div class="priceCard ${i===2||i===5?'featured':''}">${p[3]?`<div class="saveBadge">بدلًا من ${p[3]} ريال</div>`:""}<div class="planName">${p[0]}</div><div class="planPoints">${p[1]}</div><div class="priceLine"><div class="currentPrice">${p[2]}</div><div class="currency">ريال عُماني${p[2]!="0"?" / شهر":""}</div>${p[3]?`<div class="oldPrice">${p[3]} ريال</div>`:""}</div><ul class="features">${p[4].map(f=>`<li>${f}</li>`).join("")}</ul><button class="chooseBtn">اختيار ${p[0]}</button></div>`).join("")}
+function renderCategories(){ $("categoryList").innerHTML=Object.entries(categories).map(([k,c])=>`<button class="catBtn ${k===currentCategoryKey?'active':''}" onclick="selectCategory('${k}')">${c.name}</button>`).join("")}
+function selectCategory(key){currentCategoryKey=key;const c=categories[key];renderCategories();$("designTitle").innerText=c.name;$("designDesc").innerText=c.desc;$("designIdea").value=c.idea;$("extraDetails").value=c.extra;$("manualW").value=c.defaultSize[0];$("manualH").value=c.defaultSize[1];$("manualUnit").value=c.defaultSize[2]||"سم";$("specialOptions").innerHTML=c.options.map((op,i)=>`<div class="optionField"><label>${i+1}. ${op[0]}</label><select id="sp${i}">${op[1].map(v=>`<option>${escapeHtml(v)}</option>`).join("")}</select></div>`).join("");generateResult(false)}
+function setOutputMode(mode){outputMode=mode;$("imageModeBtn").classList.toggle("active",mode==="image");$("fileModeBtn").classList.toggle("active",mode==="file");$("generatedPreview").classList.toggle("active",mode==="image");$("fileMock").classList.toggle("active",mode==="file");generateResult(false)}
+function getDesignSize(){return `${$("manualW").value||"العرض"} x ${$("manualH").value||"الارتفاع"} ${$("manualUnit").value||"سم"}`}
+function collectOptions(){const c=categories[currentCategoryKey];return c.options.map((op,i)=>`${op[0]}: ${$("sp"+i)?.value||""}`).join("\n")}
+function buildPrompt(){const c=categories[currentCategoryKey];return `Specialized professional AI design request.
+
+Category:
+${c.name}
+
+Description:
+${c.desc}
+
+Selected AI model:
+${$("modelSelect").value}
+
+Required output:
+${outputMode==="image"?"Generate a final visual image design":"Generate a production-ready file/specification"}
+
+Manual size:
+${getDesignSize()}
+
+Main request:
+${$("designIdea").value}
+
+Client text/data:
+${$("extraDetails").value}
+
+Specialized options:
+${collectOptions()}
+
+Execution direction:
+Act as a specialist designer only in this exact category. Follow industry standards, correct proportions, print-ready composition, clear hierarchy, accurate spacing, professional finishing, and real production constraints.`}
+function generateResult(updateStatus=true){const c=categories[currentCategoryKey], optionsText=collectOptions();$("metaCat").innerText=c.name;$("metaSize").innerText=getDesignSize();$("metaModel").innerText=$("modelSelect").value;$("metaOutput").innerText=outputMode==="image"?"صورة":"ملف";$("promptOutput").innerText=buildPrompt();if(outputMode==="image"){$("mockTitle").innerText=c.name;$("mockText").innerText=`جاهز لتوليد صورة متخصصة في ${c.name} باستخدام ${$("modelSelect").value}.`;$("generatedImage").style.display=$("generatedImage").src?"block":"none"}else{$("fileList").innerHTML=[`القسم: ${c.name}`,`المقاس: ${getDesignSize()}`,`الموديل: ${$("modelSelect").value}`,`نوع الملف: مواصفات إنتاج متخصصة`,...optionsText.split("\n").slice(0,7)].map(x=>`<li>${escapeHtml(x)}</li>`).join("")}if(updateStatus) setStatus("تم تحديث النتيجة محليًا.","ok")}
+async function generateFinal(){generateResult(false);if(outputMode==="file"){setStatus("تم تجهيز الملف. استخدم Download لتحميل PDF.","ok");return}$("generateBtn").disabled=true;setStatus("جاري إرسال الطلب إلى Gemini API عبر Vercel Backend...","");$("mockTitle").innerText="جاري توليد الصورة...";$("mockText").innerText="يرجى الانتظار.";$("generatedImage").style.display="none";try{const res=await fetch("/api/generate-image",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:$("promptOutput").innerText,model:$("modelSelect").value,aspectRatio:"1:1"})});const text=await res.text();let data;try{data=JSON.parse(text)}catch(e){throw new Error("الـ API رجّع HTML وليس JSON. تأكد أن api/generate-image.js موجود وأنك عملت Redeploy.")}if(!res.ok) throw new Error(data.error||"فشل توليد الصورة");if(!data.image) throw new Error("لم يتم إرجاع صورة من الخادم");$("generatedImage").src=data.image;$("generatedImage").style.display="block";$("mockTitle").innerText="تم توليد الصورة";$("mockText").innerText="يمكنك التحميل من Download.";setStatus("تم توليد الصورة بنجاح.","ok")}catch(err){$("mockTitle").innerText="تعذر التوليد";$("mockText").innerText=err.message;setStatus(err.message,"error")}finally{$("generateBtn").disabled=false}}
+function setStatus(msg,type){$("statusBox").className="alert"+(type?` ${type}`:"");$("statusBox").innerText=msg}
+function copyDescription(){navigator.clipboard.writeText($("promptOutput").innerText).then(()=>setStatus("تم نسخ الوصف.","ok"))}
+function openDownloadPanel(){generateResult(false);$("downloadPanel").classList.add("active")}
+function closeDownloadPanel(){$("downloadPanel").classList.remove("active")}
+function downloadSummaryImage(){const canvas=document.createElement("canvas");canvas.width=1400;canvas.height=900;const ctx=canvas.getContext("2d");ctx.fillStyle="#070707";ctx.fillRect(0,0,1400,900);ctx.fillStyle="#111";roundRect(ctx,40,40,1320,820,35,true,false);ctx.strokeStyle="#d6ad45";ctx.lineWidth=4;roundRect(ctx,40,40,1320,820,35,false,true);ctx.fillStyle="#f6d37d";ctx.font="bold 54px Cairo, Arial";ctx.textAlign="left";ctx.fillText("FRANCO Design Studio",80,120);ctx.fillStyle="#fff";ctx.font="bold 34px Cairo, Arial";ctx.fillText(categories[currentCategoryKey].name,80,180);ctx.fillStyle="#d6ad45";ctx.fillRect(80,210,1240,3);ctx.fillStyle="#fff";ctx.font="26px Cairo, Arial";let y=270;["المقاس: "+getDesignSize(),"الناتج: "+(outputMode==="image"?"صورة":"ملف"),"الموديل: "+$("modelSelect").value,...collectOptions().split("\n").slice(0,7)].forEach(l=>{ctx.fillText(l,80,y);y+=46});ctx.fillStyle="#b8b8b8";ctx.font="24px Cairo, Arial";wrapCanvasText(ctx,$("designIdea").value,80,y+20,1220,38);wrapCanvasText(ctx,"بيانات: "+$("extraDetails").value,80,y+120,1220,38);const a=document.createElement("a");a.download="franco_design.png";a.href=canvas.toDataURL("image/png");a.click()}
+function downloadSpecPDF(){alert("تحميل PDF جاهز في النسخة القادمة. حاليًا استخدم تحميل صورة أو نسخ الوصف.")}
+function roundRect(ctx,x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();if(fill)ctx.fill();if(stroke)ctx.stroke()}
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){const words=String(text).split(" ");let line="";for(let n=0;n<words.length;n++){const test=line+words[n]+" ";if(ctx.measureText(test).width>maxWidth&&n>0){ctx.fillText(line,x,y);line=words[n]+" ";y+=lineHeight}else line=test}ctx.fillText(line,x,y)}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+document.addEventListener("change",e=>{if((e.target.id&&e.target.id.startsWith("sp"))||["manualUnit","modelSelect"].includes(e.target.id))generateResult(false)});
+document.addEventListener("input",e=>{if(["designIdea","extraDetails","manualW","manualH"].includes(e.target.id))generateResult(false)});
+</script>
+</body>
+</html>
